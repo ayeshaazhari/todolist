@@ -1,0 +1,169 @@
+<p>addnewtask works!</p>
+
+<form [formGroup]="myform" class="form1" (ngSubmit)="addtask(myform.value)" >
+    <div class="form-group w-75 mx-auto mt-4">
+        <!-- <label for="title" class="required.field">Title</label> -->
+        <input class="mx-auto w-75 d-block" placeholder="New Task" formControlName="title" id="title" type="text" class="form-control" (focus)="showform(extrafield,title1)" #title1>
+
+        <div *ngIf="myform.get('title').touched && myform.get('title').invalid" class="alert alert-danger p-1">
+            <div *ngIf="myform.get('title').errors.required">
+                Title can't be empty
+            </div>
+        </div>
+    </div>
+
+    <div class="extrafield" #extrafield>
+        <div class="form-group mx-auto text-center w-75">
+            <span class="w-50">
+                        <mat-form-field class="">
+                          <mat-label for="category" class=required.field>Category</mat-label>
+                          <mat-select formControlName="category"
+                            id="category"
+                            class="form-control"
+                          >
+                            <mat-option *ngFor="let category of categoryarray" [value]="category">
+                              {{category}}
+                            </mat-option>
+                          </mat-select>
+                          <div *ngIf="myform.get('category').touched && myform.get('category').invalid" class="alert alert-danger p-1">
+                            <div *ngIf="myform.get('category').errors.required">
+                                Select a Category
+                            </div>
+                        </div>
+                        </mat-form-field>
+
+                        </span>
+
+            <span class="w-50">
+              <mat-form-field class="">
+                <mat-label for="priority" class=required.field>Priority</mat-label>
+                <mat-select formControlName="priority"
+                  id="priority"
+                  class="form-control"
+                >
+                  <mat-option *ngFor="let priority of priorityarray" [value]="priority">
+                    {{priority}}
+                  </mat-option>
+                </mat-select>
+                <div *ngIf="myform.get('priority').touched && myform.get('priority').invalid" class="alert alert-danger p-1">
+                  <div *ngIf="myform.get('priority').errors.required">
+                      Select a priority
+                  </div>
+              </div>
+              </mat-form-field>
+
+             </span>
+
+        </div>
+
+        <div class="form-group w-75 mx-auto">
+            <!-- <label for="title" class="required.field">Title</label> -->
+            <input class="mx-auto w-75 d-block" placeholder="Description" formControlName="description" id="description" type="text" class="form-control">
+
+            <div *ngIf="myform.get('description').touched && myform.get('description').invalid" class="alert alert-danger p-1">
+                <div *ngIf="myform.get('description').errors.required">
+                    Write Some description about the project.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group w-75 mx-auto">
+            <span class="m-2">
+              <div class="control-section">
+                <div id="control_wrapper">
+                    <ejs-datepicker class="w-75 form-control" placeholder="Start Date (DD-MM-YYYY)" [(ngModel)]="strtdate" formControlName="strtdate" id="strtdate"  ></ejs-datepicker>
+                </div>
+              </div>
+             </span>
+            <span class="m-2">
+              <div class="control-section">
+                <div id="control_wrapper">
+                  <ejs-datepicker class="w-75" placeholder="Due Date(DD-MM-YYYY)" [(ngModel)]="enddate"></ejs-datepicker>
+                </div>
+              </div>
+            </span>
+            <span class="m-2">
+              <mat-form-field class="w-75 my-2">
+                  <mat-label>Status</mat-label>
+                  <mat-select [(ngModel)]="status">
+                    <mat-option *ngFor="let status of statusarray" [value]="status">
+                      {{status}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </span>
+        </div>
+
+        <div class="form-group w-75 mx-auto">
+          <button type="submit" 
+          formControlName="additembtn" 
+          id="additembtn"
+          class="form-control"
+          >
+            Add task
+          </button>
+        </div>
+    </div>
+</form>
+
+<!-- <div class="form1" >
+
+         <div class="extrafield" #extrafield>
+            <div class="form-group mx-auto text-center w-75 my-4">
+            <span class="w-50">
+            <mat-form-field class="mx-2">
+              <mat-label>Category</mat-label>
+              <mat-select [(ngModel)]="category">
+                <mat-option *ngFor="let category of categoryarray" [value]="category">
+                  {{category}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            </span>
+            <span class="w-50">
+              <mat-form-field class="mx-2">
+                <mat-label>Priority</mat-label>
+                <mat-select [(ngModel)]="priority">
+                  <mat-option *ngFor="let priority of priorityarray" [value]="priority">
+                    {{priority}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </span>
+            </div>
+            <textarea class="mx-auto w-75 d-block my-2" type="text" [(ngModel)]="description" placeholder="Description"></textarea>
+            <div class="form-group mx-auto text-center w-100 my-4">
+
+              <span class="m-2">
+
+<div class="control-section">
+  <div id="control_wrapper">
+
+              <ejs-datepicker class="w-75" placeholder="Start Date (DD-MM-YYYY)" [(ngModel)]="strtdate" ></ejs-datepicker>
+  </div>
+</div>
+              </span>
+              <span class="m-2">
+
+                <div class="control-section">
+                  <div id="control_wrapper">
+
+                              <ejs-datepicker class="w-75" placeholder="Due Date(DD-MM-YYYY)" [(ngModel)]="enddate"></ejs-datepicker>
+                  </div>
+                </div>
+                              </span>
+         <span class="m-2">
+            <mat-form-field class="w-75 my-2">
+                <mat-label>Status</mat-label>
+                <mat-select [(ngModel)]="status">
+                  <mat-option *ngFor="let status of statusarray" [value]="status">
+                    {{status}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </span>
+              </div>
+
+            <button type="button" class="btn btn-danger ml-auto d-block my-3" (click)="fbadditem()">Add Item</button>
+        </div>
+    </div> -->

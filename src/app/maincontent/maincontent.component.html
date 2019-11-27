@@ -1,0 +1,150 @@
+
+<div class="container my-4" >
+    <!-- <div class="form1" >
+     
+        <input class="mx-auto w-75 d-block my-4" type="text"  placeholder="New Task" [(ngModel)]="title" (focus)="showform(extrafield,title1)" #title1>
+        
+         <div class="extrafield" #extrafield>
+            <div class="form-group mx-auto text-center w-75 my-4">
+            <span class="w-50">
+            <mat-form-field class="mx-2">
+              <mat-label>Category</mat-label>
+              <mat-select [(ngModel)]="category">
+                <mat-option *ngFor="let category of categoryarray" [value]="category">
+                  {{category}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            </span>
+            <span class="w-50">
+              <mat-form-field class="mx-2">
+                <mat-label>Priority</mat-label>
+                <mat-select [(ngModel)]="priority">
+                  <mat-option *ngFor="let priority of priorityarray" [value]="priority">
+                    {{priority}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </span>
+            </div>
+            <textarea class="mx-auto w-75 d-block my-2" type="text" [(ngModel)]="description" placeholder="Description"></textarea>
+            <div class="form-group mx-auto text-center w-100 my-4">
+
+              <span class="m-2">
+
+<div class="control-section">
+  <div id="control_wrapper">
+
+              <ejs-datepicker class="w-75" placeholder="Start Date (DD-MM-YYYY)" [(ngModel)]="strtdate" ></ejs-datepicker>
+  </div>
+</div>
+              </span>
+              <span class="m-2">
+
+                <div class="control-section">
+                  <div id="control_wrapper">
+                
+                              <ejs-datepicker class="w-75" placeholder="Due Date(DD-MM-YYYY)" [(ngModel)]="enddate"></ejs-datepicker>
+                  </div>
+                </div>
+                              </span>
+         <span class="m-2">
+            <mat-form-field class="w-75 my-2">
+                <mat-label>Status</mat-label>
+                <mat-select [(ngModel)]="status">
+                  <mat-option *ngFor="let status of statusarray" [value]="status">
+                    {{status}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </span>
+              </div>
+
+
+            <button type="button" class="btn btn-danger ml-auto d-block my-3" (click)="fbadditem()">Add Item</button>
+        </div>
+    </div> -->
+    <app-addnewtask></app-addnewtask>
+    <div class="items my-5">
+        <button type="button" class="btn bg-warning" (click)="tblview()"><i class="fa fa-filter"></i></button>
+        <button type="button" class="btn bg-warning" (click)="tblview()"><i class="fa fa-sort"></i></button>
+
+      <div class="toggleview text-right m-2">
+          <!-- <button type="button" class="btn bg-warning m-2" (click)="tblview()"><i class="fa fa-th-large"></i></button> -->
+          <button type="button" class="btn bg-warning" (click)="tblview(itemdiv ,chngicon)" #toggleview><i class="lni-list" #chngicon></i></button>
+        </div>
+<div class="masonry" #itemdiv>
+  <div class="item" *ngFor = "let item of lists | async">
+    <div class="card p-2" #editvalues >
+        <div (click)="openDialog(item)">
+          <div class="card-header">
+        <h3>{{ item.title}}</h3>
+
+        <span class=" badge badge-secondary d-block w-25 text-center"> {{item.category}}</span>
+          </div>
+
+    <div class="card-body">
+        {{ item.description }}
+    </div>
+
+    
+
+        </div>
+
+    <div class="hoverbuttons d-flex card-footer">
+        <div class="completedstatus mr-auto" *ngIf="item.status=='Completed'; then successtemplate else warningtemplate"></div>
+          <ng-template #successtemplate>
+              <span class="badge badge-success align-bottom text-small d-block">{{ item.status}}</span>
+              <span class="m-2 text-small d-block"> Started on: {{ item.strtdate.toDate() | date }} </span>
+          </ng-template>
+          <ng-template #warningtemplate>
+              <span class="badge badge-danger text-small d-block">{{ item.status }}</span>
+              <span class="m-2 text-small d-block" > Due Date:<mark class="border-round">{{item.enddate.toDate() |date}}</mark> </span>
+            </ng-template>
+        <div class="ficons ml-auto">
+<i type=""  *ngIf="item.status=='Completed';" class="lni-share text-danger mx-1"></i>
+<i type=""  (click)="chngcolor(editvalues)" class="lni-color-pallet text-danger mx-1"></i>
+<i type=""  (click)="fbdeleteItem(item)"  class="lni-trash text-danger mx-1"></i>
+      </div>
+    </div>
+</div>
+
+
+
+  </div>
+  
+ 
+</div>
+    </div>
+
+</div>
+
+<p>updated data</p>
+
+<p  *ngIf="data" >
+
+    {{data}}
+    {{title}}
+{{data.title}}
+
+
+{{data.priority}}
+{{data.description}}
+</p>
+<!-- <ol>
+    <li>
+      <mat-form-field>
+        <input matInput [(ngModel)]="name" placeholder="What's your name?">
+      </mat-form-field>
+    </li>
+    <li>
+      <button mat-raised-button (click)="openDialog()">Pick one</button>
+    </li>
+    <li *ngIf="animal">
+      You chose: <i>{{animal}}</i>
+    </li>
+  </ol> -->
+
+
+
+
