@@ -91,7 +91,7 @@ get status(){
 }
 
 addtask(data){
-  // console.log(data);
+  console.log(data);
   this.service.addData(data);
 }
 
