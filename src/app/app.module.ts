@@ -27,14 +27,19 @@ import {MatSelectModule} from '@angular/material/select';
 
 // Angular material dialolog model
 import { MatDialogModule , MatFormFieldModule,
-  MatInputModule, } from '@angular/material';
+  MatInputModule,
+  ErrorStateMatcher,
+  ShowOnDirtyErrorStateMatcher, 
+  MatButtonModule,
+  MatIconModule,
+  MatOptionModule} from '@angular/material';
 
 
 // For MDB Angular Pro 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
+
 // import { DatepickerModule, WavesModule } from 'ng-uikit-pro-standard';
-import { DatepickerComponent } from './datepicker/datepicker.component';
 import { AddnewtaskComponent } from './addnewtask/addnewtask.component';
 
 @NgModule({
@@ -43,7 +48,6 @@ import { AddnewtaskComponent } from './addnewtask/addnewtask.component';
     NavbarComponent,
     MaincontentComponent,
     DialogOverviewExampleDialog,
-    DatepickerComponent,
     AddnewtaskComponent,
   ],
   imports: [
@@ -57,14 +61,16 @@ import { AddnewtaskComponent } from './addnewtask/addnewtask.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatOptionModule,
     AngularFontAwesomeModule,
     DatePickerModule,
     ReactiveFormsModule,
-    // WavesModule,
+   
     MDBBootstrapModule,
+    MatIconModule
   ],
   entryComponents:[MaincontentComponent,DialogOverviewExampleDialog],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,6 +6,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { isNgTemplate } from '@angular/compiler';
 import {MatSelectModule} from '@angular/material/select';
+import { filter } from 'minimatch';
+import {FormControl} from '@angular/forms';
+
 
 export interface DialogData {
   title:string,
@@ -25,11 +28,7 @@ export class MaincontentComponent implements OnInit {
   resultData;
   cardcolor;
   toggleview = false;
-
-
   editvalues;
-
-  // extrafield; 
 
   lists:Observable<Todolist[]>;
 
@@ -42,19 +41,11 @@ export class MaincontentComponent implements OnInit {
   status;
 
   chngColor = 0;
-  colors = ["#f28b82", "#ffde7e" ,"fff475","#ccff90", "#a7ffeb","#cbf0f8","#aecbfa","#aecbfa","#d7aefb","#fdcfe8","#e6c9a8","#e8eaed","#fff" ];
+  // colors = ["#f28b82", "#ffde7e" ,"fff475","#ccff90", "#a7ffeb","#cbf0f8","#aecbfa","#aecbfa","#d7aefb","#fdcfe8","#e6c9a8","#e8eaed","#fff" ];
 
-  // statusarray = [
-  // "Completed","Pending"
-  // ];
-  // categoryarray = [
-  //   "HTML","CSS","Bootstrap","JavaScript","Angular"
-  // ];
+  filtervalue;
 
-  // priorityarray = [
-  //   "High","Medium","Low"
-  // ]
-
+ 
 
   newItem:Todolist = {
     title:this.title,
@@ -70,8 +61,11 @@ export class MaincontentComponent implements OnInit {
   constructor(private service:FbserviceService , public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.lists = this.service.getLists();
-   
+    // this.lists = this.service.getLists();
+    this.service.getLists().subscribe(result => {
+      console.log(result);
+      this.resultData = result;
+  });
   }
 
   // showform(extrafield , title) {
@@ -83,7 +77,7 @@ export class MaincontentComponent implements OnInit {
 
   // }
 
-  rmvform(extrafield) {
+  remvform(extrafield) {
     extrafield.style.display = "none";
   }
 
@@ -142,8 +136,23 @@ export class MaincontentComponent implements OnInit {
     icon.setAttribute("class" , "lni-list");
     itemdiv.style.columnCount = "3";
   }
-}
+  }
 
+  onChange(value){
+  console.log("f " + typeof(value.value) + " " + value.value.length + " a " + value.value);
+  // for(let i=0;i<value.value.length;i++){
+  //   console.log(value[i].value + "<br>");
+  // }
+  }
+
+  filtertag = new FormControl();
+  // filterarray: string[] = [
+  //   "HTML","CSS","Bootstrap","JavaScript","jQuery","Angular","Node","Express","SQL","MongoDb","Java"
+  //   ];
+
+  statusarray = [ "Completed","Pending" ];
+  categoryarray = ["HTML","CSS","Bootstrap","JavaScript","Angular" ];
+  priorityarray = [ "High","Medium","Low" ];
 
 
 

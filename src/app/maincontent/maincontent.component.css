@@ -4,13 +4,17 @@
 
 input , textarea {
     border:none;
-    border-bottom: 1px solid rgb(179, 175, 175,0.5);
+    /* border-bottom: 1px solid rgb(179, 175, 175,0.5); */
     margin-bottom: 15px;
     font-size: 14px;
 }
 
 input:focus , textarea:focus{
     outline: none !important;
+}
+
+.form-control {
+  border-radius: 0px !important;
 }
 
 /* .form1 {
@@ -67,4 +71,10 @@ input:focus , textarea:focus{
 .hoverbuttons span {
   font-size: 10px;
   vertical-align: middle;
+}
+
+.otpgroup {
+  font-weight: bolder;
+  padding:11px;
+  margin: 5px;
 }

@@ -20,5 +20,5 @@ export interface Todolist {
 
    export var priorityarray = [
     "High","Medium","Low"
-  ]
-  
+  ];
+

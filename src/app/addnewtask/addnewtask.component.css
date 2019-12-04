@@ -13,6 +13,11 @@
 .form-control {
     border: none;
     border-bottom: 1px solid;
+    border-radius: 0px;
+}
+
+.form-group {
+    margin: 10px;
 }
 
 

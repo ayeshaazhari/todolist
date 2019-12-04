@@ -10,26 +10,19 @@ import { Todolist } from './module';
 export class FbserviceService {
 
   listCollection:AngularFirestoreCollection;
-  listDocument:AngularFirestoreDocument;
-  // courseDocument: AngularFirestoreDocument;
-  
+  listDocument:AngularFirestoreDocument;  
 
   constructor(private db:AngularFirestore) { 
     this.listCollection = this.db.collection('todolist');
   }
 
   getLists() {
-    //  this.courses = this.db.collection('coures').valueChanges();
-    //  return this.courses;
     return this.db.collection('todolist').valueChanges();
   }
 
   addData(newItem:Todolist){
-   
       const id = this.db.createId();
-      console.log("Addition called");
-      // this.listCollection.add(newItem);
-  
+      console.log("Addition called");  
       newItem.id = id;
       this.listCollection.doc(id).set(newItem);
       console.log(newItem);

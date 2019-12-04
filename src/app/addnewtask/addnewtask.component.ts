@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+
+
 import { Observable } from 'rxjs';
 import { Todolist ,colors ,statusarray , categoryarray , priorityarray} from '../module';
 
@@ -17,35 +21,20 @@ export class AddnewtaskComponent implements OnInit {
   lists:Observable<Todolist[]>;
 
   extrafield;
-  // title;
   newItem:Todolist;
 
-  
-
-  statusarray = [
-    "Completed","Pending"
-    ];
-    categoryarray = [
-      "HTML","CSS","Bootstrap","JavaScript","Angular"
-    ];
-  
-    priorityarray = [
-      "High","Medium","Low"
-    ]
+  statusarray = [ "Completed","Pending" ];
+  categoryarray = ["HTML","CSS","Bootstrap","JavaScript","Angular" ];
+  priorityarray = [ "High","Medium","Low" ];
 
   constructor(private service:FbserviceService) { }
 
-
   ngOnInit() {
     this.lists = this.service.getLists();
-
   }
-
-
 
   showform(extrafield , title) {
     this.extrafield = extrafield;
-    // this.title = title;
     console.log(extrafield);
     console.log("input tag");
     extrafield.style.display = "block";
@@ -56,15 +45,16 @@ export class AddnewtaskComponent implements OnInit {
     extrafield.style.display = "none";
   }
 
-myform = new FormGroup({
-  'title': new FormControl("",Validators.required),
-  'category': new FormControl("",Validators.required),
-  'priority': new FormControl("",Validators.required),
-  'description': new FormControl("",Validators.required),
-  'startdate': new FormControl("",Validators.required),
-  'enddate': new FormControl("",Validators.required),
-  'satus': new FormControl("",Validators.required)
-});
+  myform = new FormGroup({
+    'title': new FormControl("",Validators.required),
+    'category': new FormControl("",Validators.required),
+    'priority': new FormControl("",Validators.required),
+    'description': new FormControl("",Validators.required),
+    'strtdate': new FormControl("",Validators.required),
+    'enddate': new FormControl("",Validators.required),
+    'status': new FormControl("",Validators.required),
+  });
+
 
 get title(){
   return this.myform.get('title');
@@ -76,6 +66,10 @@ get category(){
 
 get priority(){
   return this.myform.get('priority');
+}
+
+get description(){
+  return this.myform.get('description');
 }
 
 get strtdate(){
