@@ -29,6 +29,8 @@ input:focus , textarea:focus{
     .masonry { /* Masonry container */
       column-count: 3;
       column-gap: 1em;
+      column-fill: balance;
+
     }
     
     .item { /* Masonry bricks or child elements */
@@ -78,3 +80,29 @@ input:focus , textarea:focus{
   padding:11px;
   margin: 5px;
 }
+
+mat-select , .searchtext {
+  /* border-bottom: 1px solid; */
+  /* padding: 10px; */
+}
+
+/* .mat-select  {
+  border: none;
+  border-bottom: 1px solid;
+  border-radius: 0px;
+  padding-bottom:10px;
+}
+
+.mat-form-field-infix {
+  border-bottom:1px solid !important;
+  margin:6px;
+}
+ */
+
+ .filterdiv {
+   /* margin-top:10px; */
+ }
+
+ .maincontent {
+   background-color: rgba(243, 205, 205, 0.3);
+ }

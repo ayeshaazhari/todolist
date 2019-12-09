@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// import { GoogleplusloginService } from '../googlepluslogin.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  user;
   constructor() { }
 
   ngOnInit() {
+    // this.gService.user$.subscribe(user=> {
+    //   this.user = user;
+    //   });
   }
+
+  logout() {
+    // this.gService.googlelogout();
+    }
 
 }

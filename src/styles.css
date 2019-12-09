@@ -14,7 +14,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color:transparent !important;
   }
 
-  .mat-form-field-appearance-legacy .mat-form-field-underline {
+  /* .mat-form-field-appearance-legacy .mat-form-field-underline {
     bottom: 0px !important;
     height: 0px !important;
     border: none !important;
@@ -26,4 +26,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
     opacity: 0 !important;
-}
+} */

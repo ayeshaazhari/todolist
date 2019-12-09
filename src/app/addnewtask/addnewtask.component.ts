@@ -61,7 +61,7 @@ get title(){
 }
 
 get category(){
-  return this.myform.get('title');
+  return this.myform.get('category');
 }
 
 get priority(){

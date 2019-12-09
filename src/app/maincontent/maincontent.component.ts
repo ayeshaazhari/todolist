@@ -29,6 +29,14 @@ export class MaincontentComponent implements OnInit {
   cardcolor;
   toggleview = false;
   editvalues;
+  filtered = new Array();
+  searched = new Array();
+  searchvalue;
+
+  statusarray = [ "Completed","Pending" ];
+  categoryarray = ["HTML","CSS","Bootstrap","JavaScript","Angular" ];
+  priorityarray = [ "High","Medium","Low" ];
+
 
   lists:Observable<Todolist[]>;
 
@@ -65,6 +73,7 @@ export class MaincontentComponent implements OnInit {
     this.service.getLists().subscribe(result => {
       console.log(result);
       this.resultData = result;
+      this.filtered = result;
   });
   }
 
@@ -138,21 +147,85 @@ export class MaincontentComponent implements OnInit {
   }
   }
 
-  onChange(value){
-  console.log("f " + typeof(value.value) + " " + value.value.length + " a " + value.value);
-  // for(let i=0;i<value.value.length;i++){
-  //   console.log(value[i].value + "<br>");
-  // }
+//   onChange(value){
+//   console.log("f " + typeof(value.value) + " " + value.value.length + " a " + value.value);
+//   var b = value.value;
+//   for(let i in b){
+//     for(let onedata in this.resultData){
+//         var allcategory = this.resultData[onedata].category;
+//         var allpriority = this.resultData[onedata].priority;
+//         var allstatus = this.resultData[onedata].status;
+      
+//         for(let j=0;j<allcategory.length;j++){
+//             console.log("filter " + b[i] + " cat " + allcategory);
+//             if(b[i] == allcategory) {
+//                  console.log("selected "+ JSON.stringify(this.resultData[j]));
+//                  break;
+//             }
+//         } 
+//     }
+//   }
+//   }
+
+onChange(value){
+    this.filtered = [];
+    var filterproerties = value.value;
+    var allcategory = new Array();
+    var allpriority = new Array();
+    var allstatus= new Array();
+    var sameid= new Array();
+
+
+    for(let onedata in this.resultData){
+        // console.log(onedata);
+       var  fbcategory = this.resultData[onedata].category;
+       var  fbpriority = this.resultData[onedata].priority;
+       var  fbstatus = this.resultData[onedata].status;
+       var  fid = this.resultData[onedata].id;
+        for(let a in filterproerties){
+            if(filterproerties[a]== fbcategory || filterproerties[a]== fbpriority || filterproerties[a] == fbstatus){
+            for(let b in this.filtered){
+            if(this.filtered[b].id == fid) {
+                console.log("same id " + fid +" " + this.filtered[b].id);
+                this.filtered.pop();
+            } else {
+                sameid.push(fid);
+            }
+        }
+              this.filtered.push(this.resultData[onedata]);
+         
+          }
+        }
+    }
+}
+
+// search 
+searchonenter(event){
+  this.searched = [];
+  let searchidlist = new Array;
+  if(event.keyCode == 13) {
+    for(let k=0; k < this.filtered.length; k++) {
+      let list = this.filtered[k];
+      let title = list.title;
+      let category = list.category;
+      let priority = list.priority;
+      let description = list.description;
+      let status = list.status;
+
+      if(title.includes(this.searchvalue) || category.includes(this.searchvalue) || priority.includes(this.searchvalue) || description.includes(this.searchvalue)|| status.includes(this.searchvalue) ){
+        this.searched.push(list);
+      } 
+    }
+    this.filtered= this.searched;
   }
 
-  filtertag = new FormControl();
-  // filterarray: string[] = [
-  //   "HTML","CSS","Bootstrap","JavaScript","jQuery","Angular","Node","Express","SQL","MongoDb","Java"
-  //   ];
+  if(!this.searchvalue){
+  this.filtered = this.resultData;
+  }
+}
 
-  statusarray = [ "Completed","Pending" ];
-  categoryarray = ["HTML","CSS","Bootstrap","JavaScript","Angular" ];
-  priorityarray = [ "High","Medium","Low" ];
+  filtertag = new FormControl();
+
 
 
 
