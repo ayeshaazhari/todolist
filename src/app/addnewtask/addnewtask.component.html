@@ -1,16 +1,17 @@
+<div class="container my-4" (click)="remvform(extrafield, $event)" >
 <form [formGroup]="myform" class="form1" (ngSubmit)="addtask(myform.value)"  (focusin)="showform(extrafield,title1)" >
     
   <!-- Title -->
     <div class="form-group w-75 mx-auto mt-4">
         <mat-form-field class="mx-auto w-100 d-block">
-            <input matInput placeholder="New Task" formControlName="title"
+            <input matInput placeholder="New Task" formControlName="title1"
              id="title" 
              type="text" 
              class="form-control" 
              #title1>
         </mat-form-field>
-        <div *ngIf="title.touched && title.invalid" class="alert alert-danger p-1">
-            <div *ngIf="title.errors.required">
+        <div *ngIf="title1.touched && title1.invalid" class="alert alert-danger p-1">
+            <div *ngIf="title1.errors.required">
                 Title can't be empty
             </div>
         </div>
@@ -22,15 +23,15 @@
             <span class="w-50 text-center">
               <mat-form-field>
                 <mat-label for="category" class=required.field>Category</mat-label>
-                <mat-select formControlName="category"
-                  id="category"
+                <mat-select formControlName="category1"
+                  id="category1"
                   class="form-control"
                 >
                   <mat-option *ngFor="let category of categoryarray" [value]="category">
                     {{category}}
                   </mat-option>
                 </mat-select>
-                <div *ngIf="category.touched && category.invalid" class="alert alert-danger p-1">
+                <div *ngIf="category1.touched && category1.invalid" class="alert alert-danger p-1">
                   <div *ngIf="category.errors.required">
                       Select a Category
                   </div>
@@ -41,15 +42,15 @@
             <span class="w-50 text-center">
               <mat-form-field>
                 <mat-label for="priority" class=required.field>Priority</mat-label>
-                <mat-select formControlName="priority"
-                  id="priority"
+                <mat-select formControlName="priority1"
+                  id="priority1"
                   class="form-control"
                 >
                   <mat-option *ngFor="let priority of priorityarray" [value]="priority">
                     {{priority}}
                   </mat-option>
                 </mat-select>
-                <div *ngIf="priority.touched && priority.invalid" class="alert alert-danger p-1">
+                <div *ngIf="priority1.touched && priority1.invalid" class="alert alert-danger p-1">
                   <div *ngIf="priority.errors.required">
                       Select a priority
                   </div>
@@ -114,3 +115,6 @@
         </div>
     </div>
 </form>
+
+</div>
+

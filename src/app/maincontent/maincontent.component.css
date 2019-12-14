@@ -1,10 +1,7 @@
-/* .extrafield {
-    display: none;
-} */
+
 
 input , textarea {
     border:none;
-    /* border-bottom: 1px solid rgb(179, 175, 175,0.5); */
     margin-bottom: 15px;
     font-size: 14px;
 }
@@ -17,13 +14,6 @@ input:focus , textarea:focus{
   border-radius: 0px !important;
 }
 
-/* .form1 {
-    box-shadow: 0 0 8px rgb(179, 175, 175,0.5);
-    width: 75%;
-    margin:0 auto;
-    padding: 10px;
-    border-radius: 8px;
-} */
 
 
     .masonry { /* Masonry container */
@@ -62,8 +52,6 @@ input:focus , textarea:focus{
     }
 .masonry .item , .masonry .item .card {
   border-radius: 15px;
-  /* border: 2px solid rgb(155, 153, 153,0.5); */
-  /* box-shadow: 1px 5px 10px rgb(179, 175, 175,0.5); */
 }
 
 .masonry .item .card:hover {
@@ -81,28 +69,18 @@ input:focus , textarea:focus{
   margin: 5px;
 }
 
-mat-select , .searchtext {
-  /* border-bottom: 1px solid; */
-  /* padding: 10px; */
-}
-
-/* .mat-select  {
-  border: none;
-  border-bottom: 1px solid;
-  border-radius: 0px;
-  padding-bottom:10px;
-}
-
-.mat-form-field-infix {
-  border-bottom:1px solid !important;
-  margin:6px;
-}
- */
-
- .filterdiv {
-   /* margin-top:10px; */
+ .maincontent {
+   background-color: rgba(158, 158, 158, 0.16);
  }
 
- .maincontent {
-   background-color: rgba(243, 205, 205, 0.3);
+ .toggleicon { 
+   box-shadow: 1px 3px 1px 0px #888;
+ }
+
+ .toggleicon i {
+   vertical-align: text-bottom;
+ }
+
+ .toggleicon i:hover {
+   color: white;
  }

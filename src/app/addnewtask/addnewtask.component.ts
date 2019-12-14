@@ -27,6 +27,11 @@ export class AddnewtaskComponent implements OnInit {
   categoryarray = ["HTML","CSS","Bootstrap","JavaScript","Angular" ];
   priorityarray = [ "High","Medium","Low" ];
 
+  titlevalue;
+  categoryvalue;
+  priorityvalue;
+
+
   constructor(private service:FbserviceService) { }
 
   ngOnInit() {
@@ -41,14 +46,18 @@ export class AddnewtaskComponent implements OnInit {
     title.placeholder = "Title";
   }
 
-  rmvform(extrafield) {
+  remvform(extrafield,event) {
+if(event.path[0].className == "container my-4"){
+
     extrafield.style.display = "none";
+    console.log(event.path[0].className);
+  }
   }
 
   myform = new FormGroup({
-    'title': new FormControl("",Validators.required),
-    'category': new FormControl("",Validators.required),
-    'priority': new FormControl("",Validators.required),
+    'title1': new FormControl("",Validators.required),
+    'category1': new FormControl("",Validators.required),
+    'priority1': new FormControl("",Validators.required),
     'description': new FormControl("",Validators.required),
     'strtdate': new FormControl("",Validators.required),
     'enddate': new FormControl("",Validators.required),
@@ -56,16 +65,17 @@ export class AddnewtaskComponent implements OnInit {
   });
 
 
-get title(){
-  return this.myform.get('title');
+get title1(){
+  this.titlevalue = this.myform.get('title1').value;
+  return this.myform.get('title1');
 }
 
-get category(){
-  return this.myform.get('category');
+get category1(){
+  return this.myform.get('category1').value;
 }
 
-get priority(){
-  return this.myform.get('priority');
+get priority1(){
+  return this.myform.get('priority1');
 }
 
 get description(){
@@ -86,7 +96,9 @@ get status(){
 
 addtask(data){
   console.log(data);
+  this.title1.setValue('');
   this.service.addData(data);
+  
 }
 
 

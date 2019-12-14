@@ -1,31 +1,61 @@
-<h1 mat-dialog-title>Edit</h1>
-<div mat-dialog-content>
-  
-  <mat-form-field class="d-block">
+<h1 mat-dialog-title class="bg-danger p-3 m-0 text-white">Edit</h1>
+<div mat-dialog-content class="p-4 m-3">
 
-    <label for="title">Title</label>
-    <input class="mx-auto w-100 mb-3" type="text"  placeholder="Title" [(ngModel)]="data.title"  name="title"  matInput value="item.title">
+    <mat-form-field class="w-100 my-2 ">
+        <mat-label>Title</mat-label>
+        <input matInput class="mx-auto w-100" type="text"   [(ngModel)]="data.title"  name="title"  value="item.title">
+    </mat-form-field>
 
-    <label for="category">Category</label>
-    <input type="text" class=" w-100 mb-3" placeholder="Category" [(ngModel)]="data.category" name="category" matInput>
-    
-    <label for="priority">Priority</label>
-    <input type="text" class=" w-100   mb-3" placeholder="Priority" [(ngModel)]="data.priority" name="Priority" matInput>
+    <div class="flex my-2">
+      <mat-form-field class="mr-4">
+        <mat-label for="category" class=required.field>Category</mat-label>
+        <mat-select [(ngModel)]="data.category" placeholder="Category" name="category">
+            <mat-option *ngFor="let c of valueOptions" value="{{allValues[c]}}">{{allValues[c]}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <label for="description">Description</label>
-    <textarea class="mx-auto w-100 d-block  mb-3" type="text" [(ngModel)]="data.description" placeholder="Description" name="priority" matInput></textarea>
+      <mat-form-field class="mr-4">
+          <mat-label for="priority" class=required.field>Priority</mat-label>
+          <mat-select [(ngModel)]="data.priority"  placeholder="Priority" name="priority">
+              <mat-option *ngFor="let p of pvalueOptions" value="{{pallValues[p]}}">{{pallValues[p]}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+     </div>
 
-    <label for="strtdate">Start Date</label>
-    <input type="text" class=" w-100  mb-3" placeholder="Start Date" [(ngModel)]="data.strtdate" name="strtdate" matInput>
-    
-    <label for="enddate">End Date</label>
-    <input type="text" class=" w-100  mb-3" placeholder="End Date" [(ngModel)]="data.enddate" name="enddate" matInput>
+        <mat-form-field class="w-100">
+        <textarea matInput  class="mx-auto  d-block form-control" 
+        placeholder="Description" 
+        [(ngModel)]="data.description"
+        name="description"
+        type="text"
+        > 
+        </textarea>
+      </mat-form-field>
 
-    <label for="status">Status</label>
-    <input type="text" class="mx-auto w-100 d-block  mb-3" placeholder="Status" [(ngModel)]="data.status" matInput>
-  </mat-form-field>
+      <div class="flex">
+      <mat-form-field class="mr-3">
+        <input  name="sd" #sd="ngModel" [(ngModel)]="sdate" [matDatepicker]="dp" placeholder="Start Date" required matInput>
+        <mat-datepicker-toggle class="datepicker-toggler" matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp> </mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="mr-3">
+        <input  name="ed" #ed="ngModel" [(ngModel)]="edate" [matDatepicker]="dp1" placeholder="End Date" required matInput>
+        <mat-datepicker-toggle class="datepicker-toggler" matSuffix [for]="dp1"></mat-datepicker-toggle>
+        <mat-datepicker #dp1> </mat-datepicker>
+      </mat-form-field>
+
+    </div>
+
+    <mat-form-field class="m-2 w-50">
+      <mat-label for="status" class=required.field>Status</mat-label>
+      <mat-select [(ngModel)]="data.status" placeholder="Staus" name="status">
+          <mat-option *ngFor="let s of svalueOptions" value="{{sallValues[s]}}">{{sallValues[s]}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancle</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial (click)="updateddata(data)">Update</button>
+<div mat-dialog-actions class="mb-2 float-right mr-5">
+  <button mat-button (click)="onNoClick()" class="btn btn-danger">Cancle</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial (click)="updateddata(data)" class="btn btn-success">Update</button>
 </div>

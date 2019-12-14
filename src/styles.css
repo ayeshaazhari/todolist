@@ -27,3 +27,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
     opacity: 0 !important;
 } */
+
+
+.mat-dialog-container {
+    padding: 0px !important;
+    overflow: visible !important;
+  }

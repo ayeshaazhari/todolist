@@ -1,11 +1,11 @@
 
-<div class="container my-4" >
+<div class=" ">
   <app-addnewtask></app-addnewtask>
 </div>
 
 <div class="container-fluid maincontent">
   <div class="container my-5 py-5">
-  <div class="items my-5">
+  <div class="items">
       <!-- <button type="button" class="btn bg-warning" (click)="tblview()"><i class="fa fa-filter"></i></button> -->
       <!-- <button type="button" class="btn bg-warning" (click)="tblview()"><i class="fa fa-sort"></i></button> -->
 
@@ -14,11 +14,11 @@
           <mat-form-field class="filterdiv">
               <mat-label>Filter By</mat-label>
               <mat-select [formControl]="filtertag" multiple (selectionChange)="onChange($event)">
-                <div  class="otpgroup bg-warning" >Category</div>
+                <div  class="otpgroup bg-success text-white" >Category</div>
                 <mat-option *ngFor="let category of categoryarray" [value]= "category" #categoryvalue>{{category}}</mat-option>
-                <div class="otpgroup bg-warning" >Priority </div>
+                <div class="otpgroup bg-success text-white" >Priority </div>
                 <mat-option *ngFor="let priority of priorityarray" [value]="priority">{{priority}}</mat-option>
-                <div  class="otpgroup bg-warning" >Status</div>
+                <div  class="otpgroup bg-success text-white" >Status</div>
                 <mat-option *ngFor="let status of statusarray" [value]="status">{{status}}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -26,14 +26,18 @@
             <div class="col-4">
               <mat-form-field class="searchdata">
                   <!-- <mat-icon matSuffix class="search-icon"> </mat-icon> -->
-                <input matInput type="text" placeholder="Clearable input" [(ngModel)]="searchvalue" class="d-inline w-75 m-0 p-0 text-bold" (keydown)="searchonenter($event)">
+                <input matInput type="text" placeholder="Search" [(ngModel)]="searchvalue" class="d-inline w-75 m-0 p-0 text-bold" (keydown)="searchonenter($event)">
                 <i class="fa fa-search w-25 text-right"></i>
 
               </mat-form-field>
             </div>
             <div class=" col-4 text-right">
-        <button type="button" class="btn bg-danger text-white" (click)="tblview(itemdiv ,chngicon)" #toggleview>
-          <i class="lni-list text-bold" #chngicon></i>
+        <button type="button" class="btn bg-light text-dark text-bold toggleicon" (click)="tblview(itemdiv ,chngicon)" #toggleview>
+          <!-- <i class="lni-list text-bold" #chngicon></i> -->
+          <i class="material-icons" #chngicon>
+            <!-- {{iconvalue}} -->
+            format_list_bulleted
+          </i>
         </button>
     </div>
     </div>
@@ -74,4 +78,3 @@
     </div>
     </div>
 
-    <p>asdf</p>

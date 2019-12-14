@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GoogleplusloginService } from '../googlepluslogin.service';
+import { AuthService } from "../shared/services/auth.service";
+
+// import { GoogleplusloginService } from '../googlepluslogin.service';
 
 
 @Component({
@@ -10,12 +12,12 @@ import { GoogleplusloginService } from '../googlepluslogin.service';
 })
 export class LoginComponent implements OnInit {
   user;
-  constructor(private router: Router,private gService:GoogleplusloginService) { }
+  constructor(public authService: AuthService , private router:Router) { }
 
   ngOnInit() {
-    this.gService.user$.subscribe(user=> {
-      this.user = user;
-      });
+    // this.gService.user$.subscribe(user=> {
+    //   this.user = user;
+    //   });
   }
 // login
   submit(values){
@@ -25,16 +27,14 @@ export class LoginComponent implements OnInit {
 
   // google sign in
 
-  loginGoogle() {
-    // this.router.navigate(['/todolistapp']);
+  //  loginGoogle() {
 
-    var a = this.gService.googlelogin();
-    console.log(a);
-    this.router.navigate(['/todolistapp']);
-    }
+  //    this.gService.googlelogin();
+  //   this.router.navigate(['/todolistapp']);
+  //   }
 
-  logout() {
-    this.gService.googlelogout();
-    }
+  // logout() {
+  //   this.gService.googlelogout();
+  //   }
 
 }

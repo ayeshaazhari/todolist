@@ -11,6 +11,7 @@ import {FormControl} from '@angular/forms';
 
 
 export interface DialogData {
+  [x: string]: any;
   title:string,
   category:string,
   priority:string,
@@ -52,6 +53,8 @@ export class MaincontentComponent implements OnInit {
   // colors = ["#f28b82", "#ffde7e" ,"fff475","#ccff90", "#a7ffeb","#cbf0f8","#aecbfa","#aecbfa","#d7aefb","#fdcfe8","#e6c9a8","#e8eaed","#fff" ];
 
   filtervalue;
+  icontoggle=false;
+  iconvalue = "format_list_bulleted";
 
  
 
@@ -73,6 +76,12 @@ export class MaincontentComponent implements OnInit {
     this.service.getLists().subscribe(result => {
       console.log(result);
       this.resultData = result;
+      for(let a of this.resultData) {
+        console.log(a);
+      a.strtdate = a.strtdate.toDate();
+      }
+      console.log(result);
+
       this.filtered = result;
   });
   }
@@ -135,16 +144,29 @@ export class MaincontentComponent implements OnInit {
   }
 
   tblview(itemdiv ,icon) {
-    this.toggleview =!this.toggleview;
-    if(this.toggleview) {
-    icon.removeAttribute("class");
-    icon.setAttribute("class" , "lni-grid-alt");
+    if(this.icontoggle == false){
+    this.iconvalue = "grid_on";
+    icon.innerHTML = "grid_on";
     itemdiv.style.columnCount = "1";
-  } else {
-    icon.removeAttribute("class");
-    icon.setAttribute("class" , "lni-list");
-    itemdiv.style.columnCount = "3";
-  }
+
+    } else { 
+      this.iconvalue = "format_list_bulleted";
+      itemdiv.style.columnCount = "3";
+      icon.innerHTML = "format_list_bulleted";
+   }
+   this.icontoggle =!this.icontoggle;
+
+
+  //   this.toggleview =!this.toggleview;
+  //   if(this.toggleview) {
+  //   icon.removeAttribute("class");
+  //   icon.setAttribute("class" , "lni-grid-alt");
+  //   itemdiv.style.columnCount = "1";
+  // } else {
+  //   icon.removeAttribute("class");
+  //   icon.setAttribute("class" , "lni-list");
+  //   itemdiv.style.columnCount = "3";
+  // }
   }
 
 //   onChange(value){
@@ -263,6 +285,27 @@ templateUrl: 'dialog-overview-example-dialog.html',
 })
 
 export class DialogOverviewExampleDialog {
+  category = this.data.category;
+  statusarray = [ "Completed","Pending" ];
+  categoryarray = ["HTML","CSS","Bootstrap","JavaScript","Angular" ];
+  priorityarray = [ "High","Medium","Low" ];
+
+
+  allValues = categoryarray;
+  valueOptions = Object.keys(categoryarray);
+
+  pallValues = priorityarray;
+  pvalueOptions = Object.keys(priorityarray);
+
+  sallValues = statusarray;
+  svalueOptions = Object.keys(statusarray);
+
+  newdate1 = this.data.strtdate.toDate();
+newdate2= this.newdate1.toISOString().split('T')[0];
+
+sdate = this.data.strtdate.toDate();
+edate = this.data.enddate.toDate();
+
 
 constructor(
   public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
@@ -275,6 +318,8 @@ onNoClick(): void {
 updateddata(item:Todolist) {
   // item.title = this.data.title;
   console.log("item "+ item.id);
+  item.strtdate = this.sdate;
+  item.enddate = this.edate;
   this.service.fbupdateData(item);
 }
 

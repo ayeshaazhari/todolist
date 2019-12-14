@@ -35,7 +35,7 @@
     </div>
 
     <!-- Sign in button -->
-    <button type="submit" mat-stroked-button color="accent" class="mt-5 border-rounded w-75 d-block mx-auto p-2 text-bold signinbtn">Sign In</button>
+    <button type="submit" mat-stroked-button color="accent" class="mt-5 border-rounded w-75 d-block mx-auto p-2 text-bold signinbtn" >Sign In</button>
 
     <!-- Register -->
     <p>Not a member ?
@@ -46,7 +46,7 @@
     <!-- Social login -->
     <p>or sign in with:</p>
 
-    <a href="#" class="mx-2 signinsocial" role="button" (click)="loginGoogle()"><i class="fa fa-google-plus "></i></a>
+    <a href="#" class="mx-2 signinsocial" role="button" (click)="authService.GoogleAuth()"><i class="fa fa-google-plus "></i></a>
     <a href="#" class="mx-2 signinsocial" role="button"><i class="fa fa-facebook-f "></i></a>
     <a href="#" class="mx-2 signinsocial" role="button"><i class="fa fa-twitter "></i></a>
     <a href="#" class="mx-2 signinsocial" role="button"><i class="fa fa-github"></i></a>
