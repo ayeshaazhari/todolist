@@ -4,6 +4,8 @@ import { auth } from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
+import * as firebase from 'firebase/app';
+
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +39,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['todolistapp']);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
@@ -62,7 +64,7 @@ export class AuthService {
   SendVerificationMail() {
     return this.afAuth.auth.currentUser.sendEmailVerification()
     .then(() => {
-      this.router.navigate(['verify-email-address']);
+      this.router.navigate(['verify-email']);
     })
   }
 
@@ -79,13 +81,30 @@ export class AuthService {
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
+    return (user !== null ) ? true : false;
+    // console.log(user);
+    // return (user !==);
   }
 
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider());
   }
+
+  FacebookAuth(){
+    return this.AuthLogin(new auth.FacebookAuthProvider());
+  //  return  this.afAuth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider);
+  // return this.afAuth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider)
+  //     .then((result) => {
+  //       this.ngZone.run(() => {
+  //         this.router.navigate(['todolistapp']);
+  //       })
+  //       this.SetUserData(result.user);
+  //     }).catch((error) => {
+  //       window.alert(error.message)
+  //     })
+  
+ }
 
   // Auth logic to run auth providers
   AuthLogin(provider) {
@@ -121,7 +140,7 @@ export class AuthService {
   SignOut() {
     return this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['login']);
     })
   }
 

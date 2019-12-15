@@ -1,10 +1,11 @@
+<app-navbar></app-navbar>
 
 <div class=" ">
   <app-addnewtask></app-addnewtask>
 </div>
 
 <div class="container-fluid maincontent">
-  <div class="container my-5 py-5">
+  <div class="container mt-5 py-5">
   <div class="items">
       <!-- <button type="button" class="btn bg-warning" (click)="tblview()"><i class="fa fa-filter"></i></button> -->
       <!-- <button type="button" class="btn bg-warning" (click)="tblview()"><i class="fa fa-sort"></i></button> -->
@@ -49,23 +50,27 @@
           <div (click)="openDialog(item)">
             <div class="card-header">
               <h3>{{ item.title}}</h3>
-              <span class=" badge badge-secondary d-block w-25 text-center"> {{item.category}}</span>
+              <span class=" badge badge-secondary d-inline-block px-4 text-center"> {{item.category}}</span>
             </div>
 
             <div class="card-body">
-              {{ item.description }}
+              <small class="text-muted text-monospace" >Priority: {{item.priority}}</small>
+              <p>{{ item.description }}</p>
             </div>
           </div>
 
           <div class="hoverbuttons d-flex card-footer">
             <div class="completedstatus mr-auto" *ngIf="item.status=='Completed'; then successtemplate else warningtemplate"></div>
             <ng-template #successtemplate>
-              <span class="badge badge-success align-bottom text-small d-block">{{ item.status}}</span>
-              <span class="m-2 text-small d-block"> Started on: {{ item.strtdate }} </span>
+              <p class="badge badge-success align-bottom text-small align-middle my-2">{{ item.status}}</p>
+              <span class="m-2 text-small d-block text-monospace"> <b class="text-bolder">Started:</b> {{ item.strtdate }} <br> <b class="text-bolder">Completed: </b>{{ item.enddate }} </span>
+              <!-- <span class="m-2 text-small d-block"> Completed: {{ item.enddate }} </span>  -->
             </ng-template>
             <ng-template #warningtemplate>
-              <span class="badge badge-danger text-small d-block">{{ item.status }}</span>
-              <span class="m-2 text-small d-block" > Due Date:<mark class="border-round">{{item.enddate }}}</mark> </span>
+              <p class="badge badge-danger text-small align-middle my-2">{{ item.status }}</p>
+              <span class="m-2 text-small d-block text-monospace"> <b class="text-bolder">Started:</b> {{ item.strtdate }} <br>  <b class="text-bolder">Due Date: </b> <mark class="border-round">{{item.enddate }}</mark> </span>
+
+              <!-- <span class="m-2 text-small d-block" > Due Date:<mark class="border-round">{{item.enddate }}}</mark> </span> -->
               </ng-template>
               <div class="ficons ml-auto">
                 <i type=""  *ngIf="item.status=='Completed';" class="lni-share text-danger mx-1"></i>

@@ -9,6 +9,8 @@
         <input matInput placeholder="Email" 
         type="text" ngModel
         name="firstName" #firstName="ngModel"
+        required
+        #userName
          >
     </mat-form-field>
     <!-- Password -->
@@ -16,6 +18,8 @@
         <input matInput placeholder="Password" 
         type="text" ngModel
         name="password" #password="ngModel"
+        #userPassword
+        required
          >
     </mat-form-field>
     <div class="d-flex justify-content-around">
@@ -30,26 +34,26 @@
         </div>
         <div>
             <!-- Forgot password -->
-            <button mat-button color="accent">Forget Password?</button>
+            <button mat-button color="accent" routerLink="/forgot-password">Forget Password?</button>
         </div>
     </div>
 
     <!-- Sign in button -->
-    <button type="submit" mat-stroked-button color="accent" class="mt-5 border-rounded w-75 d-block mx-auto p-2 text-bold signinbtn" >Sign In</button>
+    <button type="button" mat-stroked-button color="accent" class="mt-5 border-rounded w-75 d-block mx-auto p-2 text-bold signinbtn" (click)="authService.SignIn(userName.value, userPassword.value)">Sign In</button>
 
     <!-- Register -->
     <p>Not a member ?
-        <button mat-button color="accent">Register</button>
+        <button mat-button color="accent"  routerLink="/signup">Register</button>
     </p>
 
     <div class="sociallogindiv my-5">
     <!-- Social login -->
     <p>or sign in with:</p>
 
-    <a href="#" class="mx-2 signinsocial" role="button" (click)="authService.GoogleAuth()"><i class="fa fa-google-plus "></i></a>
-    <a href="#" class="mx-2 signinsocial" role="button"><i class="fa fa-facebook-f "></i></a>
-    <a href="#" class="mx-2 signinsocial" role="button"><i class="fa fa-twitter "></i></a>
-    <a href="#" class="mx-2 signinsocial" role="button"><i class="fa fa-github"></i></a>
+    <a class="mx-2 signinsocial" role="button" (click)="authService.GoogleAuth()"><i class="fa fa-google-plus "></i></a>
+    <a class="mx-2 signinsocial" role="buttonclic" (click)="authService.FacebookAuth()"><i class="fa fa-facebook-f "></i></a>
+    <a  class="mx-2 signinsocial" role="button"><i class="fa fa-twitter "></i></a>
+    <a  class="mx-2 signinsocial" role="button"><i class="fa fa-github"></i></a>
     </div>
 
 </form>

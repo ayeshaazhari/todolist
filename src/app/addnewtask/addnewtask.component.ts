@@ -55,9 +55,9 @@ if(event.path[0].className == "container my-4"){
   }
 
   myform = new FormGroup({
-    'title1': new FormControl("",Validators.required),
-    'category1': new FormControl("",Validators.required),
-    'priority1': new FormControl("",Validators.required),
+    'title': new FormControl("",Validators.required),
+    'category': new FormControl("",Validators.required),
+    'priority': new FormControl("",Validators.required),
     'description': new FormControl("",Validators.required),
     'strtdate': new FormControl("",Validators.required),
     'enddate': new FormControl("",Validators.required),
@@ -65,17 +65,17 @@ if(event.path[0].className == "container my-4"){
   });
 
 
-get title1(){
-  this.titlevalue = this.myform.get('title1').value;
-  return this.myform.get('title1');
+get title(){
+  this.titlevalue = this.myform.get('title').value;
+  return this.myform.get('title');
 }
 
-get category1(){
-  return this.myform.get('category1').value;
+get category(){
+  return this.myform.get('category').value;
 }
 
-get priority1(){
-  return this.myform.get('priority1');
+get priority(){
+  return this.myform.get('priority');
 }
 
 get description(){
@@ -96,7 +96,7 @@ get status(){
 
 addtask(data){
   console.log(data);
-  this.title1.setValue('');
+  this.title.setValue('');
   this.service.addData(data);
   
 }

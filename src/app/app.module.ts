@@ -62,6 +62,10 @@ import { RouterModule } from '@angular/router';
 // social login
 import * as firebase from 'firebase/app';
 import { FbserviceService } from './fbservice.service';
+import { FooterComponent } from './footer/footer.component';
+import { SignupComponent } from './signup/signup.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 
 
 
@@ -73,7 +77,11 @@ import { FbserviceService } from './fbservice.service';
   MaincontentComponent,
   DialogOverviewExampleDialog,
   AddnewtaskComponent,
-  LoginComponent
+  LoginComponent,
+  FooterComponent,
+  SignupComponent,
+  VerifyEmailComponent,
+  ForgetpasswordComponent
   ],
   imports: [
     BrowserModule,

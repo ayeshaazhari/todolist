@@ -4,14 +4,14 @@
   <!-- Title -->
     <div class="form-group w-75 mx-auto mt-4">
         <mat-form-field class="mx-auto w-100 d-block">
-            <input matInput placeholder="New Task" formControlName="title1"
+            <input matInput placeholder="New Task" formControlName="title"
              id="title" 
              type="text" 
              class="form-control" 
-             #title1>
+             #title>
         </mat-form-field>
-        <div *ngIf="title1.touched && title1.invalid" class="alert alert-danger p-1">
-            <div *ngIf="title1.errors.required">
+        <div *ngIf="title.touched && title.invalid" class="alert alert-danger p-1">
+            <div *ngIf="title.errors.required">
                 Title can't be empty
             </div>
         </div>
@@ -20,41 +20,39 @@
     <div class="extrafield" #extrafield>
       <!-- category  & priority -->
         <div class="form-group mx-auto w-75">
-            <span class="w-50 text-center">
-              <mat-form-field>
-                <mat-label for="category" class=required.field>Category</mat-label>
-                <mat-select formControlName="category1"
-                  id="category1"
-                  class="form-control"
-                >
-                  <mat-option *ngFor="let category of categoryarray" [value]="category">
-                    {{category}}
-                  </mat-option>
-                </mat-select>
-                <div *ngIf="category1.touched && category1.invalid" class="alert alert-danger p-1">
-                  <div *ngIf="category.errors.required">
-                      Select a Category
-                  </div>
+          <span class="w-50 text-center">
+            <mat-form-field>
+              <mat-label for="category" class=required.field>Category</mat-label>
+              <mat-select formControlName="category"
+                id="category"
+              >
+                <mat-option *ngFor="let category of categoryarray" [value]="category">
+                  {{category}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="category.touched && category.invalid" class="alert alert-danger p-1">
+                <div *ngIf="category.errors.required">
+                    Select a category
                 </div>
-              </mat-form-field>
-            </span>
+                </mat-error>
+            </mat-form-field>
+          </span>
 
             <span class="w-50 text-center">
               <mat-form-field>
                 <mat-label for="priority" class=required.field>Priority</mat-label>
-                <mat-select formControlName="priority1"
-                  id="priority1"
-                  class="form-control"
+                <mat-select formControlName="priority"
+                  id="priority"
                 >
                   <mat-option *ngFor="let priority of priorityarray" [value]="priority">
                     {{priority}}
                   </mat-option>
                 </mat-select>
-                <div *ngIf="priority1.touched && priority1.invalid" class="alert alert-danger p-1">
+                <mat-error *ngIf="priority.touched && priority.invalid" class="alert alert-danger p-1">
                   <div *ngIf="priority.errors.required">
                       Select a priority
                   </div>
-              </div>
+                  </mat-error>
               </mat-form-field>
             </span>
         </div>
@@ -68,13 +66,12 @@
           id="description" 
           type="text"> 
           </textarea>
+          <mat-error *ngIf="description.touched && description.invalid" class="alert alert-danger p-1">
+            <div *ngIf="description.errors.required">
+                Wite some Description
+            </div>
+            </mat-error>
          </mat-form-field>
-          
-          <div *ngIf="description.touched && description.invalid" class="alert alert-danger p-1 w-75 mx-auto">
-              <div *ngIf="description.errors.required">
-                  Write Some description about the project.
-              </div>
-          </div>
         </div>
 
         <!-- Startdate enddate status -->

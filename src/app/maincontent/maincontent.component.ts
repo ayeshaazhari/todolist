@@ -77,8 +77,11 @@ export class MaincontentComponent implements OnInit {
       console.log(result);
       this.resultData = result;
       for(let a of this.resultData) {
-        console.log(a);
+        console.log(a.strtdate);
       a.strtdate = a.strtdate.toDate();
+      a.strtdate = a.strtdate.toISOString().split('T')[0];
+      a.enddate = a.enddate.toDate();
+      a.enddate = a.enddate.toISOString().split('T')[0];
       }
       console.log(result);
 
@@ -300,11 +303,11 @@ export class DialogOverviewExampleDialog {
   sallValues = statusarray;
   svalueOptions = Object.keys(statusarray);
 
-  newdate1 = this.data.strtdate.toDate();
-newdate2= this.newdate1.toISOString().split('T')[0];
+// newdate1 = this.data.strtdate.toDate();
+// newdate2= this.newdate1.toISOString().split('T')[0];
 
-sdate = this.data.strtdate.toDate();
-edate = this.data.enddate.toDate();
+sdate = this.data.strtdate;
+edate = this.data.enddate;
 
 
 constructor(
@@ -318,8 +321,10 @@ onNoClick(): void {
 updateddata(item:Todolist) {
   // item.title = this.data.title;
   console.log("item "+ item.id);
-  item.strtdate = this.sdate;
-  item.enddate = this.edate;
+  let newstrdate = new Date(this.sdate);
+  let newenddate = new Date(this.edate);
+  item.strtdate = newstrdate;
+  item.enddate = newenddate;
   this.service.fbupdateData(item);
 }
 
