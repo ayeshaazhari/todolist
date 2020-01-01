@@ -70,9 +70,21 @@ input:focus , textarea:focus{
 }
 
  .maincontent {
-   background-color: rgba(158, 158, 158, 0.16);
+   /* background-color: rgba(158, 158, 158, 0.16); */
+   /* background: rgba(255, 255, 255, 0.5) url("../../assets/bg1.jpg") no-repeat 0 50%; */
+   background: linear-gradient(rgba(255,255,255,0.9), rgba(0,0,0,.9)), url("../../assets/bg1.jpg") no-repeat 0 50%;
+ }
+/* 
+ .maincontent .overlay {
+    background-color: black;
+    opacity: 0.5;
  }
 
+ .items {
+   opacity: 1;
+   z-index: 9999;
+ } */
+ 
  .toggleicon { 
    box-shadow: 1px 3px 1px 0px #888;
  }

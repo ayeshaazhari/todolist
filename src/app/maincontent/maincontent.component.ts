@@ -1,13 +1,17 @@
 import { Component, OnInit , Inject } from '@angular/core';
 import { FbserviceService } from '../fbservice.service';
 import { Observable } from 'rxjs';
-import { Todolist ,colors ,statusarray , categoryarray , priorityarray} from '../module';
+import { Todolist ,colors ,statusarray  , priorityarray} from '../module';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { isNgTemplate } from '@angular/compiler';
 import {MatSelectModule} from '@angular/material/select';
 import { filter } from 'minimatch';
 import {FormControl} from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { moveIn ,fallIn } from '../shared/animations';
+import { trigger, state, transition, animate, style } from '@angular/animations';
+
 
 
 export interface DialogData {
@@ -21,7 +25,31 @@ export interface DialogData {
 @Component({
   selector: 'app-maincontent',
   templateUrl: './maincontent.component.html',
-  styleUrls: ['./maincontent.component.css']
+  styleUrls: ['./maincontent.component.css'],
+  // animations : [moveIn(),fallIn()],
+  // host: { '[@moveIn]': '' }
+  animations:[
+    trigger('EnterLeave', [
+      state('flyIn', style({ transform: 'translateY(1%)'})),
+      transition(':enter', [
+        style({ transform: 'translateY(-17%)' }),
+        animate('2.5s 300ms ease-in')
+      ]),
+      
+    ]),
+    trigger('EnterLeave', [
+      state('flyInlist', style({ transform: 'translateX(0)' })),
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('3.5s 300ms ease-in')
+      ]),
+      transition(':leave', [
+        animate('0.3s ease-out', style({ transform: 'translateX(100%)' }))
+      ])
+    ])
+
+  ]
+  
 })
 export class MaincontentComponent implements OnInit {
   data;
@@ -35,7 +63,8 @@ export class MaincontentComponent implements OnInit {
   searchvalue;
 
   statusarray = [ "Completed","Pending" ];
-  categoryarray = ["HTML","CSS","Bootstrap","JavaScript","Angular" ];
+  categoryarray = new Array();
+  // categoryarray = ["HTML","CSS","Bootstrap","JavaScript","Angular" ];
   priorityarray = [ "High","Medium","Low" ];
 
 
@@ -56,7 +85,8 @@ export class MaincontentComponent implements OnInit {
   icontoggle=false;
   iconvalue = "format_list_bulleted";
 
- 
+  // annimation
+  state:string = "";
 
   newItem:Todolist = {
     title:this.title,
@@ -69,24 +99,25 @@ export class MaincontentComponent implements OnInit {
   };
   // gotData;
 
-  constructor(private service:FbserviceService , public dialog: MatDialog) { }
+  constructor(private service:FbserviceService , public dialog: MatDialog,private toastr: ToastrService) { }
 
   ngOnInit() {
-    // this.lists = this.service.getLists();
     this.service.getLists().subscribe(result => {
       console.log(result);
       this.resultData = result;
       for(let a of this.resultData) {
-        console.log(a.strtdate);
+        // console.log(a.strtdate);
       a.strtdate = a.strtdate.toDate();
       a.strtdate = a.strtdate.toISOString().split('T')[0];
       a.enddate = a.enddate.toDate();
       a.enddate = a.enddate.toISOString().split('T')[0];
       }
-      console.log(result);
-
-      this.filtered = result;
+      // console.log("result"  + result);
+      this.filtered = this.resultData;
   });
+  this.service.getcatlist().subscribe(res => { 
+    this.categoryarray = res.categorylist;
+    });
   }
 
   // showform(extrafield , title) {
@@ -148,8 +179,8 @@ export class MaincontentComponent implements OnInit {
 
   tblview(itemdiv ,icon) {
     if(this.icontoggle == false){
-    this.iconvalue = "grid_on";
-    icon.innerHTML = "grid_on";
+    this.iconvalue = "dashboard";
+    icon.innerHTML = "dashboard";
     itemdiv.style.columnCount = "1";
 
     } else { 
@@ -193,6 +224,8 @@ export class MaincontentComponent implements OnInit {
 //   }
 
 onChange(value){
+  console.log(value.value.length);
+  if(value.value.length > 0){
     this.filtered = [];
     var filterproerties = value.value;
     var allcategory = new Array();
@@ -222,6 +255,9 @@ onChange(value){
           }
         }
     }
+  } else {
+    this.filtered = this.resultData;
+  }
 }
 
 // search 
@@ -251,7 +287,9 @@ searchonenter(event){
 
   filtertag = new FormControl();
 
-
+  showToaster(msg){
+    this.toastr.success(msg);
+}
 
 
 
@@ -287,15 +325,22 @@ selector: 'dialog-overview-example-dialog',
 templateUrl: 'dialog-overview-example-dialog.html',
 })
 
-export class DialogOverviewExampleDialog {
+export class DialogOverviewExampleDialog  implements OnInit {
+  
   category = this.data.category;
   statusarray = [ "Completed","Pending" ];
-  categoryarray = ["HTML","CSS","Bootstrap","JavaScript","Angular" ];
+  categoryarray = new Array();
+  // categoryarray = ["HTML","CSS","Bootstrap","JavaScript","Angular" ];
   priorityarray = [ "High","Medium","Low" ];
 
 
-  allValues = categoryarray;
-  valueOptions = Object.keys(categoryarray);
+  ngOnInit(){
+    // this.service.getcatlist().subscribe(res => { 
+    //   this.categoryarray = res.categorylist;
+    //   });
+  }
+  allValues = this.categoryarray;
+  valueOptions = Object.keys(this.categoryarray);
 
   pallValues = priorityarray;
   pvalueOptions = Object.keys(priorityarray);
@@ -310,9 +355,14 @@ sdate = this.data.strtdate;
 edate = this.data.enddate;
 
 
+
 constructor(
   public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-  @Inject(MAT_DIALOG_DATA) public data: DialogData, private service:FbserviceService,db:AngularFirestore) {}
+  @Inject(MAT_DIALOG_DATA) public data: DialogData, private service:FbserviceService,db:AngularFirestore, private toastr: ToastrService) {
+    this.service.getcatlist().subscribe(res => { 
+      this.categoryarray = res.categorylist;
+      });
+  }
 
 onNoClick(): void {
   this.dialogRef.close();
@@ -326,6 +376,10 @@ updateddata(item:Todolist) {
   item.strtdate = newstrdate;
   item.enddate = newenddate;
   this.service.fbupdateData(item);
+}
+
+showToaster(msg){
+  this.toastr.success(msg);
 }
 
 }
