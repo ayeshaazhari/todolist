@@ -1,0 +1,25 @@
+.container {
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+}
+
+p{
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a{
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.logobrand {
+    color: #e10b1e;
+    text-shadow: 3px 3px 6px 0px #000;
+    text-shadow: 5px 6px 6px #6f1212;
+    font-family: fantasy;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}

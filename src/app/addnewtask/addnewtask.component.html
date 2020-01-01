@@ -1,6 +1,9 @@
 <div class="container my-4" (click)="remvform(extrafield, $event)" >
-<form [formGroup]="myform" class="form1" (ngSubmit)="addtask(myform.value)"  (focusin)="showform(extrafield,title1)" >
-    
+<form [formGroup]="myform" class="form1"  (submit)="addtask(myform.value,f);showToaster('Added Successfully')"  (focusin)="showform(extrafield,title)"  #f="ngForm">
+<!--     
+  <p *ngFor ="let cat of catlist">
+    {{cat}}
+  </p> -->
   <!-- Title -->
     <div class="form-group w-75 mx-auto mt-4">
         <mat-form-field class="mx-auto w-100 d-block">
@@ -8,7 +11,8 @@
              id="title" 
              type="text" 
              class="form-control" 
-             #title>
+             #title
+             >
         </mat-form-field>
         <div *ngIf="title.touched && title.invalid" class="alert alert-danger p-1">
             <div *ngIf="title.errors.required">
@@ -29,15 +33,21 @@
                 <mat-option *ngFor="let category of categoryarray" [value]="category">
                   {{category}}
                 </mat-option>
+                <div id="newcatboxdiv" #newcatboxdiv class="m-1">
+               <input matInput placeholder="Add new Category" [(ngModel)]="newcategory" #newcatbox   [ngModelOptions]="{standalone: true}" class="w-75">
+                <button (click)="addnewcatagory(newcatbox,newcatboxdiv)" class="btn btn-outline-danger">Add</button> 
+               </div>
+                <button mat-raised-button (click)="addcatagory(newcatboxdiv)" #showcategory class="w-100 themeBgColor text-white">Add New Category</button>
               </mat-select>
               <mat-error *ngIf="category.touched && category.invalid" class="alert alert-danger p-1">
                 <div *ngIf="category.errors.required">
                     Select a category
                 </div>
-                </mat-error>
+              </mat-error>
             </mat-form-field>
           </span>
 
+       
             <span class="w-50 text-center">
               <mat-form-field>
                 <mat-label for="priority" class=required.field>Priority</mat-label>
@@ -57,6 +67,10 @@
             </span>
         </div>
 
+        <!-- {{catlist}} -->
+
+     
+    
         <!-- desciption  -->
         <div class="form-group  w-75 mx-auto">
           <mat-form-field class="mx-auto w-75 d-block">
@@ -106,6 +120,7 @@
           <button type="submit"  mat-raised-button color="primary"
           id="additembtn"
           class="form-control"
+          [disabled]="!myform.valid"
           >
             Add task
           </button>

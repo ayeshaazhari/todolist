@@ -18,7 +18,7 @@ import { AuthService } from "./shared/services/auth.service";
 
 
 // for two way binding and forms
-import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule, FormGroupDirective} from '@angular/forms';
 
 
 // firebase
@@ -30,6 +30,11 @@ import { environment } from 'src/environments/environment';
 // icons ,  Annimation
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
+// toaster
+import { ToastrModule } from 'ngx-toastr';
+
+
 
 // Angular material dialolog model
 import { 
@@ -44,7 +49,11 @@ import {
   MatDatepickerModule,
   MatCheckboxModule,
   MatSelectModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatMenuModule,
+  MatBadgeModule
   // MatMomentDateModule
 } from '@angular/material';
 
@@ -66,6 +75,8 @@ import { FooterComponent } from './footer/footer.component';
 import { SignupComponent } from './signup/signup.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -81,12 +92,15 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
   FooterComponent,
   SignupComponent,
   VerifyEmailComponent,
-  ForgetpasswordComponent
+  ForgetpasswordComponent,
+  NotfoundComponent,
+  DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
 
     AngularFontAwesomeModule,
 
@@ -108,6 +122,10 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatBadgeModule,
     //  MatMomentDateModule,
     
 

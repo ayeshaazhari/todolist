@@ -10,7 +10,7 @@
       <mat-form-field class="mr-4">
         <mat-label for="category" class=required.field>Category</mat-label>
         <mat-select [(ngModel)]="data.category" placeholder="Category" name="category">
-            <mat-option *ngFor="let c of valueOptions" value="{{allValues[c]}}">{{allValues[c]}}</mat-option>
+            <mat-option *ngFor="let c of categoryarray" value="{{c}}">{{c}}</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -57,5 +57,5 @@
 </div>
 <div mat-dialog-actions class="mb-2 float-right mr-5">
   <button mat-button (click)="onNoClick()" class="btn btn-danger">Cancle</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial (click)="updateddata(data)" class="btn btn-success">Update</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial (click)="updateddata(data);showToaster('Updated Successfully')" class="btn btn-success">Update</button>
 </div>
