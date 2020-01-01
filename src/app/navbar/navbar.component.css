@@ -1,5 +1,39 @@
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
+
+:host {
+  /* // position: sticky; */
+  /* // position: -webkit-sticky;  */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+mat-toolbar {
+  background-color: #86002d;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  font-family: fantasy;
+}
+
+.navbar{
+  /* background-color: #e10b1e; */
+  /* background-color: #e3165b; */
+  background-color: #86002d;
+ 
+}
 .navbar-icon-top .navbar-nav .nav-link > .fa {
   position: relative;
   width: 36px;

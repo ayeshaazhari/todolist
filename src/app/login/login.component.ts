@@ -12,6 +12,7 @@ import { AuthService } from "../shared/services/auth.service";
 })
 export class LoginComponent implements OnInit {
   user;
+  login = true;
   constructor(public authService: AuthService , private router:Router) { }
 
   ngOnInit() {
@@ -24,6 +25,11 @@ export class LoginComponent implements OnInit {
     console.log(values.value);
     this.router.navigate(['/todolistapp']);
   }
+
+  register(){
+    this.login= !this.login;
+  }
+
 
   // google sign in
 

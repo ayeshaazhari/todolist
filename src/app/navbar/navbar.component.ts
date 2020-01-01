@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
 
 // import { GoogleplusloginService } from '../googlepluslogin.service';
@@ -10,19 +10,27 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  @Input() isdashboard:string;
+  @Input() ishomepage:string;
+
   user;
   photoURL;
   name;
-  constructor(private authservice:AuthService) { }
+  userdata;
+  constructor(public authservice:AuthService) { 
+    this.userdata = authservice.userData;
+  }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    this.photoURL = this.user.photoURL;
+    this.userdata = this.authservice.userData;
+    this.photoURL = this.userdata.photoURL;
     this.name = this.user.displayName;
   }
 
   logout() {
-    // this.gService.googlelogout();
+    this.authservice.signOut();
     }
 
 }

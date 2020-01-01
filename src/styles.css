@@ -1,4 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+.themeColor {
+    color: #86002d;
+}
+
+.themeBgColor {
+    background-color: #86002d;
+}
+
+* {
+    outline: none !important;
+}
+
+.mat-tab-label{
+    width: 100% !important;
+}
+
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #86002d ;
+}
+
+.mat-tab-labels {
+    padding: 5px;
+}
+
 input {
     padding: 5px;
 }
@@ -33,3 +58,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding: 0px !important;
     overflow: visible !important;
   }
+
+  /* app-navbar {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    box-shadow: 0 0 8px #888;
+    z-index: 9999;
+    margin-bottom: 50px;
+    height: 100%;
+  }
+    app-root{
+    position: absolute;
+    top: 100px;
+    width: 100
+    }
+
+    app-login {
+        position: relative;
+        width: 100%;
+        top: -100px;
+    }
+   */
+
+  
