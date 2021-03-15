@@ -1,10 +1,10 @@
 app-footer {
-    background-color:black;
+  background-color: black;
 }
-:host {
+/* :host {
     position: absolute;
     top: 64px;  
     bottom: 0;
     left: 0;
     right: 0;
-}
+} */

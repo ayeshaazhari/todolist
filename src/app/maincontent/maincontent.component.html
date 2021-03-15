@@ -1,101 +1,163 @@
-<app-navbar isdashboard=false ishomepage=true></app-navbar>
+<app-navbar isdashboard="false" ishomepage="true"></app-navbar>
 
-<div class=" ">
+<div class="">
   <app-addnewtask></app-addnewtask>
 </div>
 
 <div class="container-fluid maincontent">
   <div class="container overlay mt-5 py-5">
-  <div class="items">
+    <div class="items">
       <!-- <button type="button" class="btn bg-warning" (click)="tblview()"><i class="fa fa-filter"></i></button> -->
       <!-- <button type="button" class="btn bg-warning" (click)="tblview()"><i class="fa fa-sort"></i></button> -->
 
-    <div class="row text-center m-3 iconsdiv">
-          <div class="col-4">
+      <div class="row text-center m-3 iconsdiv">
+        <div class="col-4">
           <mat-form-field class="filterdiv">
-              <mat-label>Filter By</mat-label>
-              <mat-select [formControl]="filtertag" multiple (selectionChange)="onChange($event)">
-                <div  class="otpgroup bg-success text-white" >Category</div>
-                <mat-option *ngFor="let category of categoryarray" [value]= "category" #categoryvalue>{{category}}</mat-option>
-                <div class="otpgroup bg-success text-white" >Priority </div>
-                <mat-option *ngFor="let priority of priorityarray" [value]="priority">{{priority}}</mat-option>
-                <div  class="otpgroup bg-success text-white" >Status</div>
-                <mat-option *ngFor="let status of statusarray" [value]="status">{{status}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            </div>
-            <div class="col-4">
-              <mat-form-field class="searchdata">
-                  <!-- <mat-icon matSuffix class="search-icon"> </mat-icon> -->
-                <input matInput type="text" placeholder="Search" [(ngModel)]="searchvalue" class="d-inline w-75 m-0 p-0 text-bold" (keydown)="searchonenter($event)">
-                <i class="fa fa-search w-25 text-right"></i>
-
-              </mat-form-field>
-            </div>
-            <div class=" col-4 text-right">
-        <button type="button" class="btn bg-light text-dark text-bold toggleicon" (click)="tblview(itemdiv ,chngicon)" #toggleview>
-          <!-- <i class="lni-list text-bold" #chngicon></i> -->
-          <i class="material-icons" #chngicon>
-            <!-- {{iconvalue}} -->
-            format_list_bulleted
-            
-          </i>
-        </button>
+            <mat-label>Filter By</mat-label>
+            <mat-select
+              [formControl]="filtertag"
+              multiple
+              (selectionChange)="onChange($event)"
+            >
+              <div class="otpgroup bg-success text-white">Category</div>
+              <mat-option
+                *ngFor="let category of categoryarray"
+                [value]="category"
+                #categoryvalue
+                >{{ category }}</mat-option
+              >
+              <div class="otpgroup bg-success text-white">Priority</div>
+              <mat-option
+                *ngFor="let priority of priorityarray"
+                [value]="priority"
+                >{{ priority }}</mat-option
+              >
+              <div class="otpgroup bg-success text-white">Status</div>
+              <mat-option *ngFor="let status of statusarray" [value]="status">{{
+                status
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+          <mat-form-field class="searchdata">
+            <!-- <mat-icon matSuffix class="search-icon"> </mat-icon> -->
+            <input
+              matInput
+              type="text"
+              placeholder="Search"
+              [(ngModel)]="searchvalue"
+              class="d-inline w-75 m-0 p-0 text-bold"
+              (keydown)="searchonenter($event)"
+            />
+            <i class="fa fa-search w-25 text-right"></i>
+          </mat-form-field>
+        </div>
+        <div class="col-4 text-right">
+          <button
+            type="button"
+            class="btn bg-light text-dark text-bold toggleicon"
+            (click)="tblview(itemdiv, chngicon)"
+            #toggleview
+          >
+            <!-- <i class="lni-list text-bold" #chngicon></i> -->
+            <i class="material-icons" #chngicon>
+              <!-- {{iconvalue}} -->
+              format_list_bulleted
+            </i>
+          </button>
+        </div>
+      </div>
     </div>
-    </div>
-  </div>
 
- 
     <div class="masonry" #itemdiv [@EnterLeave]="'flyIn'">
-      <div *ngIf="filtered.length  > 0; then showitems; else noitems" ></div>
+      <div *ngIf="filtered.length > 0; then showitems; else noitems"></div>
 
       <ng-template #showitems>
+        <div
+          class="item"
+          *ngFor="let item of filtered"
+          [@EnterLeave]="'flyInlist'"
+        >
+          <div class="card p-2" #editvalues>
+            <div (click)="openDialog(item)">
+              <div class="card-header">
+                <h3>{{ item.title }}</h3>
+                <span
+                  class="badge badge-secondary d-inline-block px-4 text-center"
+                >
+                  {{ item.category }}</span
+                >
+              </div>
 
-      <div class="item"  *ngFor = "let item of filtered;" [@EnterLeave]="'flyInlist'">
-       
-     
-        <div class="card p-2" #editvalues  >
-          <div (click)="openDialog(item)">
-            <div class="card-header" >
-              <h3>{{ item.title}}</h3>
-              <span class=" badge badge-secondary d-inline-block px-4 text-center"> {{item.category}}</span>
+              <div class="card-body">
+                <small class="text-muted text-monospace"
+                  >Priority: {{ item.priority }}</small
+                >
+                <p>{{ item.description }}</p>
+              </div>
             </div>
 
-            <div class="card-body">
-              <small class="text-muted text-monospace" >Priority: {{item.priority}}</small>
-              <p>{{ item.description }}</p>
-            </div>
-          </div>
-
-          <div class="hoverbuttons d-flex card-footer">
-            <div class="completedstatus mr-auto" *ngIf="item.status=='Completed'; then successtemplate else warningtemplate"></div>
-            <ng-template #successtemplate>
-              <p class="badge badge-success align-bottom text-small align-middle my-2">{{ item.status}}</p>
-              <span class="m-2 text-small d-block text-monospace"> <b class="text-bolder">Started:</b> {{ item.strtdate }} <br> <b class="text-bolder">Completed: </b>{{ item.enddate }} </span>
-            </ng-template>
-            <ng-template #warningtemplate>
-              <p class="badge badge-danger text-small align-middle my-2">{{ item.status }}</p>
-              <span class="m-2 text-small d-block text-monospace"> <b class="text-bolder">Started:</b> {{ item.strtdate }} <br>  <b class="text-bolder">Due Date: </b> <mark class="border-round">{{item.enddate }}</mark> </span>
-
+            <div class="hoverbuttons d-flex card-footer">
+              <div
+                class="completedstatus mr-auto"
+                *ngIf="
+                  item.status == 'Completed';
+                  then successtemplate;
+                  else warningtemplate
+                "
+              ></div>
+              <ng-template #successtemplate>
+                <p
+                  class="badge badge-success align-bottom text-small align-middle my-2"
+                >
+                  {{ item.status }}
+                </p>
+                <span class="m-2 text-small d-block text-monospace">
+                  <b class="text-bolder">Started:</b> {{ item.strtdate }} <br />
+                  <b class="text-bolder">Completed: </b>{{ item.enddate }}
+                </span>
+              </ng-template>
+              <ng-template #warningtemplate>
+                <p class="badge badge-danger text-small align-middle my-2">
+                  {{ item.status }}
+                </p>
+                <span class="m-2 text-small d-block text-monospace">
+                  <b class="text-bolder">Started:</b> {{ item.strtdate }} <br />
+                  <b class="text-bolder">Due Date: </b>
+                  <mark class="border-round">{{ item.enddate }}</mark>
+                </span>
               </ng-template>
               <div class="ficons ml-auto">
-                <i type=""  *ngIf="item.status=='Completed';" class="lni-share text-danger mx-1"></i>
-                <i type=""  (click)="chngcolor(editvalues)" class="lni-color-pallet text-danger mx-1"></i>
-                <i type=""  (click)="fbdeleteItem(item);showToaster('Deleted Successfully')"  class="lni-trash text-danger mx-1"></i>
+                <i
+                  type=""
+                  *ngIf="item.status == 'Completed'"
+                  class="lni-share text-danger mx-1"
+                ></i>
+                <i
+                  type=""
+                  (click)="chngcolor(editvalues)"
+                  class="lni-color-pallet text-danger mx-1"
+                ></i>
+                <i
+                  type=""
+                  (click)="
+                    fbdeleteItem(item); showToaster('Deleted Successfully')
+                  "
+                  class="lni-trash text-danger mx-1"
+                ></i>
+              </div>
             </div>
           </div>
-        </div> 
         </div>
       </ng-template>
 
       <ng-template #noitems>
-
-        <p class="p-5 my-5 text-white  noitems">No Items To display Please Add Items.</p>
-
+        <p class="p-5 my-5 text-white noitems">
+          No Items To display Please Add Items.
+        </p>
       </ng-template>
-  
     </div>
-    </div>
-    </div>
-    <app-footer></app-footer>
-
+  </div>
+</div>
+<app-footer></app-footer>

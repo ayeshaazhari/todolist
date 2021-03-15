@@ -1,128 +1,218 @@
-<div class="loginbg">
 <div class="container-fluid m-0">
-<!-- Default form login -->
-<div class="row py-5">
-    <div class="col-md-4 offset-md-3 my-5 py-5 abouttodo">
-        <a class="logo" href="#"><img src="../../assets/logo1.png" class="logo img-fluid">TodoApp</a>
-        <!-- <img src="../../assets/logo.png" class="text-center d-block mx-auto"> -->
-        <p>TodoApp is SPA (Single Page Application) in the category of Task Management, Project Management, Productivity, “Getting Things Done” (GTD), Scheduling, and Collaboration.... <br><br>TodoApp is general-purpose  which can be used for simple “honey do” home lists or to manage complex multi-user projects for business.
-        </p>
+  <!-- Default form login -->
+  <div class="row">
+    <div class="col-md-4 offset-md-2 my-5 py-5 abouttodo" align="center">
+      <a class="logo" href="#"
+        ><img src="../../assets/logo1.png" class="logo img-fluid"
+      /></a>
+      <a class="logo" href="#">KeepNote</a>
+      <!-- <img src="../../assets/logo.png" class="text-center d-block mx-auto"> -->
+      <p>
+        TodoApp is SPA (Single Page Application) in the category of Task
+        Management, Project Management, Productivity, “Getting Things Done”
+        (GTD), Scheduling, and Collaboration.... <br /><br />TodoApp is
+        general-purpose which can be used for simple “honey do” home lists or to
+        manage complex multi-user projects for business.
+      </p>
     </div>
-<form class="col-md-4 text-center border border-light p-0" action="#!" #f=ngForm (ngSubmit)="submit(f)" >
+    <form
+      class="col-md-4 text-center border border-light p-0"
+      action="#!"
+      #f="ngForm"
+      (ngSubmit)="submit(f)"
+    >
+      <mat-tab-group #tabGroup>
+        <mat-tab label="Log In">
+          <div id="login" class="container tab-pane active">
+            <br />
 
- 
-
-    <mat-tab-group #tabGroup>
-      <mat-tab label="Log In">      
-        <div id="login" class="container tab-pane active"><br>
-
-        <!-- Email -->
-        <mat-form-field class="mx-auto w-75 d-block">
-            <input matInput placeholder="Email" 
-            type="text" ngModel
-            name="useremail" #useremail="ngModel"
-            required
-            #uemail
-             >
-             <mat-error *ngIf="useremail.touched && !useremail.valid">Email is required</mat-error>
-        </mat-form-field>
-        <!-- Password -->
-        <mat-form-field class="mx-auto w-75 d-block">
-            <input matInput placeholder="Password" 
-            type="password" ngModel
-            name="userPassword" #userPassword="ngModel"
-            #uPassword
-            required
-             >
-             <mat-error *ngIf="userPassword.touched && !userPassword.valid">Password is required</mat-error>
-        </mat-form-field>
-        <div class="d-flex justify-content-around">
-            <div>
+            <!-- Email -->
+            <mat-form-field class="mx-auto w-75 d-block">
+              <input
+                matInput
+                placeholder="Email"
+                type="text"
+                ngModel
+                name="useremail"
+                #useremail="ngModel"
+                required
+                #uemail
+              />
+              <mat-error *ngIf="useremail.touched && !useremail.valid"
+                >Email is required</mat-error
+              >
+            </mat-form-field>
+            <!-- Password -->
+            <mat-form-field class="mx-auto w-75 d-block">
+              <input
+                matInput
+                placeholder="Password"
+                type="password"
+                ngModel
+                name="userPassword"
+                #userPassword="ngModel"
+                #uPassword
+                required
+              />
+              <mat-error *ngIf="userPassword.touched && !userPassword.valid"
+                >Password is required</mat-error
+              >
+            </mat-form-field>
+            <div class="d-flex justify-content-around">
+              <div>
                 <!-- Remember me -->
                 <div class="custom-control custom-checkbox">
-                    <!-- <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember"> -->
-                    <!-- <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label> -->
-                    <mat-checkbox>Remember me</mat-checkbox>
-    
+                  <!-- <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember"> -->
+                  <!-- <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label> -->
+                  <mat-checkbox>Remember me</mat-checkbox>
                 </div>
-            </div>
-            <div>
+              </div>
+              <div>
                 <!-- Forgot password -->
-                <button mat-button class="themeColor" routerLink="/forgot-password">Forget Password?</button>
+                <button
+                  mat-button
+                  class="themeColor"
+                  routerLink="/forgot-password"
+                >
+                  Forget Password?
+                </button>
+              </div>
             </div>
-        </div>
-    
-        <!-- Sign in button -->
-        <button type="button" mat-stroked-button class="themeColor mt-5 border-rounded w-75 d-block mx-auto p-2 text-bold signinbtn" (click)="authService.SignIn(uemail.value, uPassword.value)" [disabled]="!uemail.value || !uPassword.value">Sign In</button>
-    
-        <!-- Register -->
-        <p>Not a member ?
-          <span mat-button (click)="tabGroup.selectedIndex = 1" class="text-danger">Register</span>
 
-        </p>
-    
-        <div class="sociallogindiv my-5">
-        <!-- Social login -->
-        <p>or sign in with:</p>
-    
-        <a class="mx-2 signinsocial" role="button" (click)="authService.GoogleAuth()"><i class="fa fa-google-plus "></i></a>
-        <a class="mx-2 signinsocial" role="buttonclic" (click)="authService.FacebookAuth()"><i class="fa fa-facebook-f "></i></a>
-        <a  class="mx-2 signinsocial" role="button"><i class="fa fa-twitter "></i></a>
-        <a  class="mx-2 signinsocial" role="button"><i class="fa fa-github"></i></a>
-        </div>
-    </div>
-  </mat-tab>
-      <mat-tab label="Sign Up"><div id="register" class="container tab-pane"><br>
-  
-        <div class="">
-  
-        <mat-form-field class="w-75 mx-auto d-block">
-          <input matInput type="email" class="formControl" placeholder="Email" #userEmail required>
-        </mat-form-field>
-  
-        <mat-form-field class="w-75">
-          <input matInput type="password" class="formControl" placeholder="Password" #userPwd required>
-        </mat-form-field>
-        <div class="d-flex justify-content-around">
-            <div>
-                <!-- Remember me -->
-                <div class="custom-control custom-checkbox">
-                    <!-- <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember"> -->
-                    <!-- <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label> -->
-                    <mat-checkbox>Remember me</mat-checkbox>
-    
-                </div>
+            <!-- Sign in button -->
+            <button
+              type="button"
+              mat-stroked-button
+              class="themeColor mt-5 border-rounded w-75 d-block mx-auto p-2 text-bold signinbtn"
+              (click)="authService.SignIn(uemail.value, uPassword.value)"
+              [disabled]="!uemail.value || !uPassword.value"
+            >
+              Sign In
+            </button>
+
+            <!-- Register -->
+            <p>
+              Not a member ?
+              <span
+                mat-button
+                (click)="tabGroup.selectedIndex = 1"
+                class="text-danger"
+                >Register</span
+              >
+            </p>
+
+            <div class="sociallogindiv my-5">
+              <!-- Social login -->
+              <p>or sign in with:</p>
+
+              <a
+                class="mx-2 signinsocial"
+                role="button"
+                (click)="authService.GoogleAuth()"
+                ><i class="fa fa-google-plus"></i
+              ></a>
+              <a
+                class="mx-2 signinsocial"
+                role="buttonclic"
+                (click)="authService.FacebookAuth()"
+                ><i class="fa fa-facebook-f"></i
+              ></a>
+              <a class="mx-2 signinsocial" role="button"
+                ><i class="fa fa-twitter"></i
+              ></a>
+              <a class="mx-2 signinsocial" role="button"
+                ><i class="fa fa-github"></i
+              ></a>
             </div>
-            <div>
-                <!-- Forgot password -->
-                <button mat-button class="themeColor" routerLink="/forgot-password">Forget Password?</button>
-            </div>
-        </div>
-  
-        <button type="button" mat-stroked-button  class="mt-5 p-2 themeColor border-rounded w-75 d-block mx-auto  text-bold signinbtn" (click)="authService.SignUp(userEmail.value, userPwd.value)">Sign Up</button>
-    
-        <div class="sociallogindiv my-5 mx-auto">
-          <p>or sign in with:</p>
-      
-          <a class="mx-2 signinsocial" role="button" (click)="authService.GoogleAuth()"><i class="fa fa-google-plus "></i></a>
-          <a class="mx-2 signinsocial" role="button"><i class="fa fa-facebook-f "></i></a>
-          <a  class="mx-2 signinsocial" role="button"><i class="fa fa-twitter "></i></a>
-          <a  class="mx-2 signinsocial" role="button"><i class="fa fa-github"></i></a>
           </div>
+        </mat-tab>
+        <mat-tab label="Sign Up"
+          ><div id="register" class="container tab-pane">
+            <br />
 
-          <p class="nav-item">Already have an account ?
-           <span (click)="tabGroup.selectedIndex = 0" class="text-danger">Login</span>
-          </p>
-</div>
-  
- 
-</div>
-</mat-tab>
-    </mat-tab-group>
+            <div class="">
+              <mat-form-field class="w-75 mx-auto d-block">
+                <input
+                  matInput
+                  type="email"
+                  class="formControl"
+                  placeholder="Email"
+                  #userEmail
+                  required
+                />
+              </mat-form-field>
 
- 
-</form>
-<!-- Default form login -->
+              <mat-form-field class="w-75">
+                <input
+                  matInput
+                  type="password"
+                  class="formControl"
+                  placeholder="Password"
+                  #userPwd
+                  required
+                />
+              </mat-form-field>
+              <div class="d-flex justify-content-around">
+                <div>
+                  <!-- Remember me -->
+                  <div class="custom-control custom-checkbox">
+                    <!-- <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember"> -->
+                    <!-- <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label> -->
+                    <mat-checkbox>Remember me</mat-checkbox>
+                  </div>
+                </div>
+                <div>
+                  <!-- Forgot password -->
+                  <button
+                    mat-button
+                    class="themeColor"
+                    routerLink="/forgot-password"
+                  >
+                    Forget Password?
+                  </button>
+                </div>
+              </div>
 
-</div>
+              <button
+                type="button"
+                mat-stroked-button
+                class="mt-5 p-2 themeColor border-rounded w-75 d-block mx-auto text-bold signinbtn"
+                (click)="authService.SignUp(userEmail.value, userPwd.value)"
+              >
+                Sign Up
+              </button>
+
+              <div class="sociallogindiv my-5 mx-auto">
+                <p>or sign in with:</p>
+
+                <a
+                  class="mx-2 signinsocial"
+                  role="button"
+                  (click)="authService.GoogleAuth()"
+                  ><i class="fa fa-google-plus"></i
+                ></a>
+                <a class="mx-2 signinsocial" role="button"
+                  ><i class="fa fa-facebook-f"></i
+                ></a>
+                <a class="mx-2 signinsocial" role="button"
+                  ><i class="fa fa-twitter"></i
+                ></a>
+                <a class="mx-2 signinsocial" role="button"
+                  ><i class="fa fa-github"></i
+                ></a>
+              </div>
+
+              <p class="nav-item">
+                Already have an account ?
+                <span (click)="tabGroup.selectedIndex = 0" class="text-danger"
+                  >Login</span
+                >
+              </p>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </form>
+    <!-- Default form login -->
+  </div>
 </div>

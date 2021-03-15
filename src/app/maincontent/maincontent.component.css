@@ -1,61 +1,66 @@
-
-
-input , textarea {
-    border:none;
-    margin-bottom: 15px;
-    font-size: 14px;
+input,
+textarea {
+  border: none;
+  margin-bottom: 15px;
+  font-size: 14px;
 }
 
-input:focus , textarea:focus{
-    outline: none !important;
+input:focus,
+textarea:focus {
+  outline: none !important;
 }
 
 .form-control {
   border-radius: 0px !important;
 }
 
+app-addnewtask {
+  margin-top: 200px !important;
+  display: block !important;
+}
 
+.masonry {
+  /* Masonry container */
+  column-count: 3;
+  column-gap: 1em;
+  column-fill: balance;
+}
 
-    .masonry { /* Masonry container */
-      column-count: 3;
-      column-gap: 1em;
-      column-fill: balance;
+.item {
+  /* Masonry bricks or child elements */
+  background-color: #eee;
+  display: inline-block;
+  margin: 0 0 1em;
+  width: 100%;
+}
 
-    }
-    
-    .item { /* Masonry bricks or child elements */
-      background-color: #eee;
-      display: inline-block;
-      margin: 0 0 1em;
-      width: 100%;
-    }
-    
-    img {
-      width:100%;
-      border:4px solid pink;
-    }
+img {
+  width: 100%;
+  border: 4px solid pink;
+}
 
-    .mat-form-field {
-        display: block;
-    }
+.mat-form-field {
+  display: block;
+}
 
-    .hoverbuttons {
-      visibility: hidden;
-    }
+.hoverbuttons {
+  visibility: hidden;
+}
 
-    .masonry .item:hover .hoverbuttons {
-      visibility: visible;
-    }
+.masonry .item:hover .hoverbuttons {
+  visibility: visible;
+}
 
-    .badge {
-      line-height: 2 !important;
-    }
-.masonry .item , .masonry .item .card {
+.badge {
+  line-height: 2 !important;
+}
+.masonry .item,
+.masonry .item .card {
   border-radius: 15px;
 }
 
 .masonry .item .card:hover {
-  box-shadow: 1px 5px 10px rgb(179, 175, 175,0.5);
+  box-shadow: 1px 5px 10px rgb(179, 175, 175, 0.5);
 }
 
 .hoverbuttons span {
@@ -65,15 +70,17 @@ input:focus , textarea:focus{
 
 .otpgroup {
   font-weight: bolder;
-  padding:11px;
+  padding: 11px;
   margin: 5px;
 }
 
- .maincontent {
-   /* background-color: rgba(158, 158, 158, 0.16); */
-   /* background: rgba(255, 255, 255, 0.5) url("../../assets/bg1.jpg") no-repeat 0 50%; */
-   background: linear-gradient(rgba(255,255,255,0.9), rgba(0,0,0,.9)), url("../../assets/bg1.jpg") no-repeat 0 50%;
- }
+.maincontent {
+  /* background-color: rgba(158, 158, 158, 0.16); */
+  /* background: rgba(255, 255, 255, 0.5) url("../../assets/bg1.jpg") no-repeat 0 50%; */
+  /* background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0.9)),
+    url("../../assets/bg1.jpg") no-repeat 0 50%; */
+  background-color: #d8676533;
+}
 /* 
  .maincontent .overlay {
     background-color: black;
@@ -84,15 +91,15 @@ input:focus , textarea:focus{
    opacity: 1;
    z-index: 9999;
  } */
- 
- .toggleicon { 
-   box-shadow: 1px 3px 1px 0px #888;
- }
 
- .toggleicon i {
-   vertical-align: text-bottom;
- }
+.toggleicon {
+  box-shadow: 1px 3px 1px 0px #888;
+}
 
- .toggleicon i:hover {
-   color: white;
- }
+.toggleicon i {
+  vertical-align: text-bottom;
+}
+
+.toggleicon i:hover {
+  color: white;
+}
